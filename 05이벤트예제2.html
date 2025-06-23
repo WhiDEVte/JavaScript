@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>박스 이동하기</title>
+    <style>
+        html,body{padding: 0px; margin:0px;}
+        div.nav > button{
+            width: 60px; height: 60px;
+        }
+        div.nav{
+            height: 100px;
+            background-color: aqua;
+            display: flex; justify-content: center; align-items: center;            
+        }
+
+        div.main{
+            /* 남은 영역을 '높이'로 설정하는 계산 : css 함수 calc()
+                브라우저의 전체 높이 - nav 영역 높이 100px (계산식은 - 기호 양쪽에 공백 필수) 
+            */            
+            height: calc(100vh - 100px);
+            background-color: yellow;
+            /* 자식 요소를 수직, 수평 방향 모두 중앙 배치 */
+            /* display: flex; justify-content: center; align-items: center; */
+        }
+        div#box{
+            width: 150px;
+            height: 150px;
+            color:white;
+            background-color: black;
+            display:flex; justify-content: center; align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">     
+        <div class="nav">
+            <button id="top">👆</button><button id="down">👇</button><button id="left">👈</button><button id="right">👉</button>
+        </div>     
+        <!-- 두번째 중앙 박스 -->
+         <div class="main">
+             <div id="box">박스박스</div>
+         </div>
+    </div>
+    <script>
+        const container = document.getElementById('container')
+        container.addEventListener('click', () =>{
+            if (event.target.tagName === 'BUTTON'){
+                 console.log("클릭한 요소 id:", event.target.id);
+                 
+                 const currentWidth = box.offsetWidth
+                 const currentHeight = box.offsetHeight
+                 
+                 if(event.target.id === 'top'){
+                    console.log('박스가 작아집니다.(높이)')
+                 }else if(event.target.id ==='down'){
+                    console.log('박스가 커집니다.(높이)')
+                 }else if(event.target.id ==='left'){
+                    console.log('박스가 작아집니다.(너비)')
+                 }else if(event.target.id ==='right'){
+                    console.log('박스가 커집니다.(너비)')
+                 }
+            }
+        })
+
+        /* [자바스크립트에서 박스 요소 다루기]
+            -> 크기(너비 width,높이 height), 좌표(left, top)
+            * 값을 가져올 때는 - offsetXXXX
+            * 값을 설정할 때는 - box.style.width = '100px'    
+        */
+
+    </script>
+</body>
+</html>
